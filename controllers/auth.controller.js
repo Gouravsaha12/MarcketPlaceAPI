@@ -45,13 +45,11 @@ const login = async (req, res) => {
     }
 }
 
-const logOut = (req, res) => {
-    try{
-        res.clearCookie("token");
-        return res.status(201).json({ message: "Logged Out" });
-    } catch (e) {
-        return res.status(500).json({ message: "LogOut failed" });
-    }
-}
+const logout = (req, res) => {
+  res.clearCookie("token", {
+    httpOnly: true,
+  });
+  return res.status(200).json({ message: "Logged out successfully" });
+};
 
-module.exports = {register, login, logOut}
+module.exports = {register, login, logout}
