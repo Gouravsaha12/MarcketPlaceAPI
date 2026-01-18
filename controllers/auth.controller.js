@@ -4,7 +4,7 @@ const {createToken} = require("../utils/jwtToken");
 const { comparePassword } = require("../utils/password");
 
 const register = async (req, res) => {
-    const {username, email, password} = req.body;
+    const {username, email, role, password} = req.body;
     const user = await User.findOne({ email });
 
     if (user) {
@@ -12,7 +12,7 @@ const register = async (req, res) => {
     }
 
     try {
-        const newUser = await authService.register(username, email, password );
+        const newUser = await authService.register(username, email, role, password );
         return res.status(201).json(newUser);
     } catch (e) {
         console.log(e);
@@ -33,7 +33,7 @@ const login = async (req, res) => {
     }
 
     try {
-        const token = createToken(user.username, email);
+        const token = createToken(user.username, email, user.role, user._id);
         res.cookie("token", token, {
             maxAge : 3*24*60*60*1000,
             httpOnly : true

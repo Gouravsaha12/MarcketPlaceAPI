@@ -1,6 +1,7 @@
 const express = require("express")
 const connect = require("./utils/db")
 const authRouter = require("./routes/auth.route")
+const tshirt_adminRouter = require("./routes/tshirt_admin.route")
 const cookieParser = require("cookie-parser");
 
 
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/auth", authRouter);
+app.use("/admin", tshirt_adminRouter);
 
 connect(URL);
 
