@@ -5,7 +5,7 @@ const {createTshirt, modifyTshirt, removeTshirt} = require("../controllers/tshir
 const router = express.Router()
 
 router.post("/add", isAdmin, createTshirt);
-router.put("/update", isAdmin, modifyTshirt);
-router.delete("/delete", isAdmin, removeTshirt);
+router.put("/update/:id", isAdmin, modifyTshirt);
+router.delete("/delete/:id", isAdmin, removeTshirt);
 
 module.exports = router;

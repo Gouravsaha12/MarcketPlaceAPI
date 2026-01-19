@@ -5,8 +5,8 @@ const addTshirt = async (tshirtData, sellerID) => {
     return await tshirt.save();
 }
 
-const updateTshirt = async (tshirtId, updateData) => {
-    return await Tshirt.findByIdAndUpdate(tshirtId, updateData, { new: true });
+const updateTshirt = async (tshirtId, updateData, sellerID) => {
+    return await Tshirt.findByIdAndUpdate(tshirtId, {...updateData, seller: sellerID}, { new: true });
 }
 
 const deleteTshirt = async (tshirtId) => {
